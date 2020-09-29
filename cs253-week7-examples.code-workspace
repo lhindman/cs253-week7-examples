@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "MyApp"
+		},
+		{
+			"path": "StackOverflow"
 		}
 	],
 	"settings": {
