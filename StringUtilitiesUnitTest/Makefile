@@ -20,8 +20,5 @@ myprog: main.o utilities.o
 mytests: mytests.o utilities.o
 	$(CC) $(CFLAGS) $^ -o $@ 
 
-test:
-	./myprog
-
 clean:
 	rm -f *.o *.d a.out myprog mytests main

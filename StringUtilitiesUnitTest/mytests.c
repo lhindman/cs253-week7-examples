@@ -18,7 +18,6 @@
 #define UNUSED(x) (void)(x)
 #define BUFFER_SIZE 1024
 
-
 /* MACRO: Write to stderr without using malloc */
 #define DISP_MSG(MSG) if(write(STDOUT_FILENO,MSG,strlen(MSG)) == -1) perror("write");
 
@@ -120,7 +119,7 @@ int test_myitoa_safepath(void)
 	DISP_MSG("Test myitoa() safepath: ");
 	for (int i = 0; i < NUM_TESTS; i++) {
       myitoa(data[i], resultBuffer);
-		if (strcmp(resultBuffer,expected[i]) == 0) {
+		if (strcmp(resultBuffer,expected[i]) != 0) {
 			DISP_MSG("failed\n");
 			return 1;
 		}
@@ -142,7 +141,7 @@ int test_myitoa_upper_boundary(void)
    /* Run the test */
 	DISP_MSG("Test myitoa() upper boundary: ");
    myitoa(data, resultBuffer);
-   if (strcmp(resultBuffer,expected) == 0) {
+   if (strcmp(resultBuffer,expected) != 0) {
       DISP_MSG("failed\n");
       return 1;
    }
@@ -163,7 +162,59 @@ int test_myitoa_lower_boundary(void)
 
 	DISP_MSG("Test myitoa() lower boundary: ");
    myitoa(data, resultBuffer);
-   if (strcmp(resultBuffer,expected) == 0) {
+   if (strcmp(resultBuffer,expected) != 0) {
+      DISP_MSG("failed\n");
+      return 1;
+   }
+
+	DISP_MSG("passed\n");
+	return 0;
+}
+
+/* 
+ * Test reverse() using a variety of cases that fall
+ *    within the range of expected values.
+ */
+int test_reverse_safepath(void) 
+{
+   /* Setup test data */
+   const int NUM_TESTS = 7;
+   char dataBuffer[80];
+   char *data[] =     {"loops", "spoons", "life is like a box of chocolates", "a", "ab", "abc", "1234"};
+   char *expected[] = {"spool", "snoops", "setalocohc fo xob a ekil si efil", "a", "ba", "cba", "4321"};
+
+   /* Run the test */
+	DISP_MSG("Test reverse() safepath: ");
+	for (int i = 0; i < NUM_TESTS; i++) {
+      /* The data must first be copied into the buffer string literals are 
+       * allocated in the .RODATA portion of the data segment or the 
+       * text segment and cannot me modified */
+      strncpy(dataBuffer,data[i],80);
+      reverse(dataBuffer);
+		if (strcmp(dataBuffer,expected[i]) != 0) {
+			DISP_MSG("failed\n");
+			return 1;
+		}
+	}
+	DISP_MSG("passed\n");
+	return 0;
+}
+
+/* 
+ * Test reverse() using an empty string
+ */
+int test_reverse_empty(void) 
+{
+   /* Setup test data */
+   char dataBuffer[80];
+   char data[] = "";
+   char expected[] = "";
+
+   /* Run the test */
+	DISP_MSG("Test reverse() empty: ");
+   strncpy(dataBuffer,data,80);
+   reverse(dataBuffer);
+   if (strcmp(dataBuffer,expected) != 0) {
       DISP_MSG("failed\n");
       return 1;
    }
@@ -183,6 +234,9 @@ int run_all(void) {
 	status += test_myitoa_safepath();
    status += test_myitoa_upper_boundary();
    status += test_myitoa_lower_boundary();
+
+   status += test_reverse_safepath();
+   status += test_reverse_empty();  
 
 	return status;
 }

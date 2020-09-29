@@ -28,14 +28,15 @@ int myatoi(const char s[]){
 void myitoa(int n, char s[]) {
 
 	int i, sign;
+	long bugfix_n = n;
 
-	if ((sign = n) < 0) {  /* record sign */
-		n = -n;
+	if ((sign = bugfix_n) < 0) {  /* record sign */
+		bugfix_n = -bugfix_n;
 	}
 	i = 0;
 	do {
-		s[i++] = n % 10 + '0';  /* get next digit */
-	} while ((n /= 10) > 0);	/* delete it */
+		s[i++] = bugfix_n % 10 + '0';  /* get next digit */
+	} while ((bugfix_n /= 10) > 0);	/* delete it */
 
 	if (sign < 0) {
 		s[i++] = '-';
@@ -43,13 +44,11 @@ void myitoa(int n, char s[]) {
 	s[i] = '\0';
 	reverse(s);
 
-
-
 }
 
 void reverse(char s[]) {
    char c;
-	size_t i, j;
+	int i, j;
 
 	for (i = 0, j = strlen(s) -1; i < j; i++, j--) {
       /* Swap characters at positions i,j */

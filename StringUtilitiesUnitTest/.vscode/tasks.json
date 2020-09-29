@@ -22,10 +22,10 @@
             "args": ["make build"]
         },
         {
-            "label": "test",
+            "label": "mytests",
             "type": "shell",
             "group": "test",
-            "args": ["make test"]
+            "args": ["make mytests"]
         },
         {
             "label": "clean",
