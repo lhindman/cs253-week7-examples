@@ -17,6 +17,8 @@ build: myprog
 myprog: main.o utilities.o
 	$(CC) $(CFLAGS) $^ -o $@ 
 
+mytests: mytests.o utilities.o
+	$(CC) $(CFLAGS) $^ -o $@ 
 
 test:
 	./myprog
