@@ -5,6 +5,15 @@
 		},
 		{
 			"path": "StackOverflow"
+		},
+		{
+			"path": "StringUtilities"
+		},
+		{
+			"path": "StringUtilitiesMultiFile"
+		},
+		{
+			"path": "StringUtilitiesUnitTest"
 		}
 	],
 	"settings": {
