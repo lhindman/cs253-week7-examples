@@ -6,6 +6,7 @@
  */
 #include <string.h>
 #include <ctype.h>
+#include <limits.h>
 #include "utilities.h"
 
 int myatoi(const char s[]){
@@ -43,6 +44,8 @@ void myitoa(int n, char s[]) {
 	}
 	s[i] = '\0';
 	reverse(s);
+
+
 
 }
 

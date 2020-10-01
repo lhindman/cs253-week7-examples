@@ -19,25 +19,25 @@ void reverse(char s[]);
 
 int main(void) {
 
-   /* Smoke test of myatoi() */
-   printf("Testing myatoi()\n");
-   char number[] = "4192";
+	/* Smoke test of myatoi() */
+	printf("Testing myatoi()\n");
+	char number[] = "4192";
 	printf("\t\"%s\" -> %d\n",number,myatoi(number));
+	
+	/* Smoke test of reverse() */
+	printf("Testing reverse()\n");
+	char word[] = "spoons";
+	reverse(word);
+	printf("\t\"spoons\" -> %s\n", word);
 
-   /* Smoke test of reverse() */
-   printf("Testing reverse()\n");
-   char word[] = "spoons";
-   reverse(word);
-   printf("\t\"spoons\" -> %s\n", word);
-
-   /* Smoke test of myitoa() */
-   printf("Testing myitoa()\n");
+	/* Smoke test of myitoa() */
+	printf("Testing myitoa()\n");
 	char buffer[MAXLINE];
 	int value = 172931;
 	myitoa(value,buffer);
 	printf("\t%d -> \"%s\"\n",value, buffer);
 
-   return 0;
+	return 0;
 }
 
 
@@ -95,8 +95,8 @@ void myitoa(int n, char s[]) {
  *    s - null terminated string to be reversed
  */
 void reverse(char s[]) {
-   char c;
-	size_t i, j;
+    char c;
+	int i, j;
 
 	for (i = 0, j = strlen(s) -1; i < j; i++, j--) {
       /* Swap characters at positions i,j */

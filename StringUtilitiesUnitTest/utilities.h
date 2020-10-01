@@ -4,7 +4,8 @@
  * Date: Tue 29 Sep 2020 02:04:01 PM PDT
  * Description: Collection of useful string utility functions
  */
-
+#ifndef __UTILITIES_H
+#define __UTILITIES_H
 
 /* 
  * Implementation of atoi() from K&R 3.5
@@ -27,3 +28,5 @@ void myitoa(int n, char s[]);
  *    s - null terminated string to be reversed
  */
 void reverse(char s[]);
+
+#endif /* __UTILITIES_H */
